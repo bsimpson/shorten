@@ -34,3 +34,13 @@ Encoding suffixes shortened words with a \t character to indicate it was truncat
 ## Decode encoded words/sentences
     shorten.decode("the expeditious brown omnivoro\t mammal leapfrogge\t over the lethargic canine")
     # => "The expeditious brown omnivorous mammal leapfrogged over the lethargic canine"
+
+## Detect commands with custom dictionary
+Using a list of commands, you can save the user some typing
+
+    shorten = Shorten.new("/path/to/command/list")
+    shorten.decode("s\t") # => "start"
+    shorten.decode("st\t") # => "start"
+    shorten.decode("start\t") # => "start", etc
+
+`ruby your_script.rb s` is the same as typing `ruby your_script.rb start`

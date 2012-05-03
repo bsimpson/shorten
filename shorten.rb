@@ -3,10 +3,10 @@ class Shorten
 
   # Create a dict array for each letter of the alphabet
   # These are populated with DICT_PATH contents
-  def initialize
+  def initialize(dictionary=DICT_PATH)
     a_through_z = ('a'..'z').to_a
     a_through_z.each {|x| instance_variable_set(:"@dict_#{x}", [])}
-    File.open(DICT_PATH).each do |line|
+    File.open(dictionary).each do |line|
       line.downcase!
       next unless line[/^[a-z]+$/]
       instance_variable_get(:"@dict_#{line[0]}").push(line.chomp)
