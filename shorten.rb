@@ -8,8 +8,7 @@ class Shorten
     a_through_z.each {|x| instance_variable_set(:"@dict_#{x}", [])}
     File.open(DICT_PATH).each do |line|
       line.downcase!
-      next unless a_through_z.include?(line[0])
-      next if line[/'s$/]
+      next unless line[/^[a-z]+$/]
       instance_variable_get(:"@dict_#{line[0]}").push(line.chomp)
     end
   end
